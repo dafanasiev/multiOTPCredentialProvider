@@ -68,11 +68,11 @@ HRESULT CSampleCredential::call_multiotp(_In_ PCWSTR username, _In_ PCWSTR PREV_
 	//cmd = (PWSTR)CoTaskMemAlloc(sizeof(wchar_t) * (len + 1));//+1 null pointer
 
 	if (DEVELOPING) {
-		wcscpy_s(cmd, 1024, L"multiotp.exe -debug ");
+		wcscpy_s(cmd, 1024, L"-debug ");
 		//cmd = L"multiotp.exe -debug ";
 	}
 	else {
-		wcscpy_s(cmd, 1024, L"multiotp.exe ");
+		wcscpy_s(cmd, 1024, L"");
 		//cmd = L"multiotp.exe ";
 	}
 
@@ -113,6 +113,11 @@ HRESULT CSampleCredential::call_multiotp(_In_ PCWSTR username, _In_ PCWSTR PREV_
 		wchar_t appname[1024];
 
 		wcscpy_s(appname, 1024, path);
+		size_t npath = wcslen(appname);
+		if (appname[npath - 1] != '\\' && appname[npath - 1] != '/') {
+			appname[npath] = '\\';
+			appname[npath+1] = '\0';
+		}
 		wcscat_s(appname, 1024, L"multiotp.exe");
 
 		if (DEVELOPING) PrintLn(L"Calling ", appname);

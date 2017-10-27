@@ -26,7 +26,7 @@
 #define ENDPOINT_AUTH_FAIL		((HRESULT)0x88809001)
 #define ENDPOINT_AUTH_CONTINUE	((HRESULT)0x88809002) 
 
-class CSampleCredential : public ICredentialProviderCredential2, ICredentialProviderCredential, ICredentialProviderCredentialWithFieldOptions
+class CSampleCredential : public ICredentialProviderCredential2, ICredentialProviderCredentialWithFieldOptions
 {
 public:
     // IUnknown
